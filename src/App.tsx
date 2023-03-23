@@ -1,24 +1,75 @@
-import { SplitScreen } from "./components/SplitScreen";
-import { Split } from "./components/Split";
+import { LargelPersonListItem } from "./components/ListItems/LargePersonListItem";
+import { LargeProductListItem } from "./components/ListItems/LargeProductListItem";
+import { SmallPersonListItem } from "./components/ListItems/SmallPersonListItem";
+import { SmallProductListItem } from "./components/ListItems/SmallProductListItem";
+import { NumberedList } from "./components/Lists/NumberedList";
+import { RegularList } from "./components/Lists/RegularList";
+
+const people = [
+  {
+    name: "John Doe",
+    age: 54,
+    hairColor: "brown",
+    hobbies: ["swimming", "bicycling", "video games"],
+  },
+  {
+    name: "Brenda Smith",
+    age: 33,
+    hairColor: "black",
+    hobbies: ["golf", "mathematics"],
+  },
+  {
+    name: "Jane Garcia",
+    age: 27,
+    hairColor: "blonde",
+    hobbies: ["biology", "medicine", "gymnastics"],
+  },
+];
+
+const products = [
+  {
+    name: "Flat-Screen TV",
+    price: "$300",
+    description: "Huge LCD screen, a great deal",
+    rating: 4.5,
+  },
+  {
+    name: "Basketball",
+    price: "$10",
+    description: "Just like the pros use",
+    rating: 3.8,
+  },
+  {
+    name: "Running Shoes",
+    price: "$120",
+    description: "State-of-the-art technology for optimum running",
+    rating: 4.2,
+  },
+];
 
 function App() {
   return (
     <div className="App">
-      <Split
-        wrap="wrap"
-        gap={10}
-        direction="column"
-        maxWidth={500}
-        height={500}
-        itemsWeight={[2, 1, 1, 5, 1, 5]}
-      >
-        <div>tela 1</div>
-        <div>tela 2</div>
-        <div>tela 3</div>
-        <div>tela 4</div>
-        <div>tela 5</div>
-        <div>tela 6</div>
-      </Split>
+      <RegularList
+        items={people}
+        resourceName="person"
+        itemComponent={SmallPersonListItem}
+      />
+      <RegularList
+        items={people}
+        resourceName="person"
+        itemComponent={LargelPersonListItem}
+      />
+      <NumberedList
+        items={products}
+        resourceName="product"
+        itemComponent={SmallProductListItem}
+      />
+      <NumberedList
+        items={products}
+        resourceName="product"
+        itemComponent={LargeProductListItem}
+      />
     </div>
   );
 }

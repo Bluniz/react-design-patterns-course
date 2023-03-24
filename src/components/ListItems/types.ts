@@ -3,19 +3,21 @@ export interface PersonProps {
   age: number;
   hairColor: string;
   hobbies: string[];
+  id: string;
 }
 
 export interface PersonListItemProps {
-  person: PersonProps;
+  person?: PersonProps;
 }
 
 export interface ProductProps {
+  id: string;
   name: string;
   price: string;
   description: string;
   rate: number;
 }
 
-export interface ProductListItemProps {
-  product: ProductProps;
+export interface ProductInfoProps {
+  product?: ProductProps;
 }

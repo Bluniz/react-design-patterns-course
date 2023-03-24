@@ -1,11 +1,13 @@
-import { ProductListItemProps } from "./types";
+import { ProductInfoProps } from "./types";
 
-export const SmallProductListItem = ({ product }: ProductListItemProps) => {
-  const { name, price } = product;
+export const SmallProductListItem = ({ product }: ProductInfoProps) => {
+  const { name, price } = product || {};
 
-  return (
+  return product ? (
     <h3>
       {name} - {price}
     </h3>
+  ) : (
+    <p>Loading...</p>
   );
 };

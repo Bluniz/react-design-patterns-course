@@ -1,90 +1,51 @@
-import { LargelPersonListItem } from "./components/ListItems/LargePersonListItem";
-import { LargeProductListItem } from "./components/ListItems/LargeProductListItem";
-import { SmallPersonListItem } from "./components/ListItems/SmallPersonListItem";
-import { SmallProductListItem } from "./components/ListItems/SmallProductListItem";
-import { NumberedList } from "./components/Lists/NumberedList";
-import { RegularList } from "./components/Lists/RegularList";
-import { Modal } from "./components/Modal/Modal";
+import { UserInfo } from "./components/ListItems/UserInfo";
 
-const people = [
-  {
-    name: "John Doe",
-    age: 54,
-    hairColor: "brown",
-    hobbies: ["swimming", "bicycling", "video games"],
-  },
-  {
-    name: "Brenda Smith",
-    age: 33,
-    hairColor: "black",
-    hobbies: ["golf", "mathematics"],
-  },
-  {
-    name: "Jane Garcia",
-    age: 27,
-    hairColor: "blonde",
-    hobbies: ["biology", "medicine", "gymnastics"],
-  },
-];
+import { ResourceLoader } from "./components/CurrentUserLoader/ResourceLoader";
+import { ProductInfo } from "./components/ListItems/ProductInfo";
+import { DataSource } from "./components/CurrentUserLoader/DataSource";
+import axios from "axios";
 
-const products = [
-  {
-    name: "Flat-Screen TV",
-    price: "$300",
-    description: "Huge LCD screen, a great deal",
-    rating: 4.5,
-  },
-  {
-    name: "Basketball",
-    price: "$10",
-    description: "Just like the pros use",
-    rating: 3.8,
-  },
-  {
-    name: "Running Shoes",
-    price: "$120",
-    description: "State-of-the-art technology for optimum running",
-    rating: 4.2,
-  },
-];
+const getServerData = async (url: string) => {
+  const response = await axios.get(url);
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <RegularList
-//         items={people}
-//         resourceName="person"
-//         itemComponent={SmallPersonListItem}
-//       />
-//       <RegularList
-//         items={people}
-//         resourceName="person"
-//         itemComponent={LargelPersonListItem}
-//       />
-//       <NumberedList
-//         items={products}
-//         resourceName="product"
-//         itemComponent={SmallProductListItem}
-//       />
-//       <NumberedList
-//         items={products}
-//         resourceName="product"
-//         itemComponent={LargeProductListItem}
-//       />
-//     </div>
-//   );
-// }
+  return response.data;
+};
+
+const getLocalStorageData = (key: string) => () => {
+  return localStorage.getItem(key) || "";
+};
+
+const Text = ({ message }: { message?: string }) => {
+  return <h1>{message}</h1>;
+};
 
 function App() {
   return (
     <>
-      <Modal>
-        <NumberedList
-          items={products}
-          resourceName="product"
-          itemComponent={LargeProductListItem}
-        />
-      </Modal>
+      <ResourceLoader resourceName="person" resourceUrl="/users/234">
+        <UserInfo />
+      </ResourceLoader>
+      <hr />
+      <ResourceLoader resourceName="product" resourceUrl="/products/1">
+        <ProductInfo />
+      </ResourceLoader>
+      <hr />
+      <DataSource
+        getDataFunction={async () => {
+          const response = await getServerData("/users/123");
+          return response;
+        }}
+        resourceName="person"
+      >
+        <UserInfo />
+      </DataSource>
+      <hr />
+      <DataSource
+        getDataFunction={getLocalStorageData("message")}
+        resourceName="message"
+      >
+        <Text />
+      </DataSource>
     </>
   );
 }

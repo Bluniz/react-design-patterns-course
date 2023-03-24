@@ -4,6 +4,7 @@ import { SmallPersonListItem } from "./components/ListItems/SmallPersonListItem"
 import { SmallProductListItem } from "./components/ListItems/SmallProductListItem";
 import { NumberedList } from "./components/Lists/NumberedList";
 import { RegularList } from "./components/Lists/RegularList";
+import { Modal } from "./components/Modal/Modal";
 
 const people = [
   {
@@ -47,30 +48,44 @@ const products = [
   },
 ];
 
+// function App() {
+//   return (
+//     <div className="App">
+//       <RegularList
+//         items={people}
+//         resourceName="person"
+//         itemComponent={SmallPersonListItem}
+//       />
+//       <RegularList
+//         items={people}
+//         resourceName="person"
+//         itemComponent={LargelPersonListItem}
+//       />
+//       <NumberedList
+//         items={products}
+//         resourceName="product"
+//         itemComponent={SmallProductListItem}
+//       />
+//       <NumberedList
+//         items={products}
+//         resourceName="product"
+//         itemComponent={LargeProductListItem}
+//       />
+//     </div>
+//   );
+// }
+
 function App() {
   return (
-    <div className="App">
-      <RegularList
-        items={people}
-        resourceName="person"
-        itemComponent={SmallPersonListItem}
-      />
-      <RegularList
-        items={people}
-        resourceName="person"
-        itemComponent={LargelPersonListItem}
-      />
-      <NumberedList
-        items={products}
-        resourceName="product"
-        itemComponent={SmallProductListItem}
-      />
-      <NumberedList
-        items={products}
-        resourceName="product"
-        itemComponent={LargeProductListItem}
-      />
-    </div>
+    <>
+      <Modal>
+        <NumberedList
+          items={products}
+          resourceName="product"
+          itemComponent={LargeProductListItem}
+        />
+      </Modal>
+    </>
   );
 }
 

@@ -9,7 +9,7 @@ const ModalBackground = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 const ModalBody = styled.div`
@@ -23,7 +23,9 @@ interface ModalProps {}
 
 //? Event stopPropagation
 //! Utilizado para impedir que caso o usuário clique em alguma coisa dentro do modal(na children), não aconteça um event bubling e feche o modal.
-export const Modal = ({ children }: PropsWithChildren<ModalProps>) => {
+export const UncontrolledModal = ({
+  children,
+}: PropsWithChildren<ModalProps>) => {
   const [shouldShow, setShouldShow] = useState(false);
 
   return (

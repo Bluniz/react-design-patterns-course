@@ -1,16 +1,31 @@
 // import { UserInfo } from "./components/ListItems/UserInfo";
 
+import { UserInfoForm } from "./components/Forms/UserInfoForm";
+// import { UserInfo } from "./components/ListItems/UserInfo";
+// import { printProps } from "./components/PrintProps/PrintProps";
+// import { withUser } from "./components/WithUser/withUser";
+
 // import { ResourceLoader } from "./components/CurrentUserLoader/ResourceLoader";
 // import { ProductInfo } from "./components/ListItems/ProductInfo";
 // import { DataSource } from "./components/CurrentUserLoader/DataSource";
 //import axios from "axios";
-import { useState } from "react";
-import { ControlledForm } from "./components/Forms/ControlledForm";
-import { UncontrolledForm } from "./components/Forms/UncontrolledForm";
-import { UncontrolledModal } from "./components/Modal/UncontrolledModal";
-import { ControlledModal } from "./components/Modal/ControlledModal";
-import { UncontrolledOnboardingFlow } from "./components/OnboardingFlow/UncontrolledOnboardingFlow";
-import { ControlledOnboardingFlow } from "./components/OnboardingFlow/ControlledOnboardingFlow";
+// import { useState } from "react";
+// import { ControlledForm } from "./components/Forms/ControlledForm";
+// import { UncontrolledForm } from "./components/Forms/UncontrolledForm";
+// import { UncontrolledModal } from "./components/Modal/UncontrolledModal";
+// import { ControlledModal } from "./components/Modal/ControlledModal";
+// import { UncontrolledOnboardingFlow } from "./components/OnboardingFlow/UncontrolledOnboardingFlow";
+// import { ControlledOnboardingFlow } from "./components/OnboardingFlow/ControlledOnboardingFlow";
+
+// const UserInfoWithLoader = withUser(UserInfo, "123");
+
+// const App = () => {
+//   return <UserInfoWithLoader />;
+// };
+
+const App = () => {
+  return <UserInfoForm />;
+};
 
 // const getServerData = async (url: string) => {
 //   const response = await axios.get(url);
@@ -57,95 +72,95 @@ import { ControlledOnboardingFlow } from "./components/OnboardingFlow/Controlled
 //   );
 // }
 
-const StepOne = ({ goToNext }: any) => (
-  <>
-    <h1>Step One</h1>
-    <button onClick={() => goToNext({ name: "John Doe" })}>Next</button>
-  </>
-);
-const StepTwo = ({ goToNext }: any) => (
-  <>
-    <h1>Step Two</h1>
-    <button onClick={() => goToNext({ age: 60 })}>Next</button>
-  </>
-);
-const StepThree = ({ goToNext }: any) => (
-  <>
-    <h1>Step Three</h1>
-    <p>Congratulations! You qualify for our senior discount</p>
-    <button onClick={() => goToNext()}>Next</button>
-  </>
-);
-const StepFour = ({ goToNext }: any) => (
-  <>
-    <h1>Step Four</h1>
-    <button onClick={() => goToNext({ hairColor: "Brown" })}>Next</button>
-  </>
-);
+// const StepOne = ({ goToNext }: any) => (
+//   <>
+//     <h1>Step One</h1>
+//     <button onClick={() => goToNext({ name: "John Doe" })}>Next</button>
+//   </>
+// );
+// const StepTwo = ({ goToNext }: any) => (
+//   <>
+//     <h1>Step Two</h1>
+//     <button onClick={() => goToNext({ age: 60 })}>Next</button>
+//   </>
+// );
+// const StepThree = ({ goToNext }: any) => (
+//   <>
+//     <h1>Step Three</h1>
+//     <p>Congratulations! You qualify for our senior discount</p>
+//     <button onClick={() => goToNext()}>Next</button>
+//   </>
+// );
+// const StepFour = ({ goToNext }: any) => (
+//   <>
+//     <h1>Step Four</h1>
+//     <button onClick={() => goToNext({ hairColor: "Brown" })}>Next</button>
+//   </>
+// );
 
-const App = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [onboardingData, setOnboardingData] = useState<any>({});
+// const App = () => {
+//   const [isOpenModal, setIsOpenModal] = useState(false);
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [onboardingData, setOnboardingData] = useState<any>({});
 
-  const onNext = (stepData: any) => {
-    setOnboardingData((currentOnboardingData: any) => ({
-      ...currentOnboardingData,
-      ...stepData,
-    }));
+//   const onNext = (stepData: any) => {
+//     setOnboardingData((currentOnboardingData: any) => ({
+//       ...currentOnboardingData,
+//       ...stepData,
+//     }));
 
-    setCurrentIndex((index) => index + 1);
-  };
+//     setCurrentIndex((index) => index + 1);
+//   };
 
-  return (
-    <>
-      <UncontrolledForm />
-      <hr />
-      <ControlledForm />
-      <hr />
-      <UncontrolledModal />
-      <hr />
-      <ControlledModal
-        isOpen={isOpenModal}
-        onClose={() => {
-          alert("Are you sure?");
-          setIsOpenModal(false);
-        }}
-      />
-      <button onClick={() => setIsOpenModal(true)}>
-        {isOpenModal ? "Hide modal" : "Show modal"}
-      </button>
+//   return (
+//     <>
+//       <UncontrolledForm />
+//       <hr />
+//       <ControlledForm />
+//       <hr />
+//       <UncontrolledModal />
+//       <hr />
+//       <ControlledModal
+//         isOpen={isOpenModal}
+//         onClose={() => {
+//           alert("Are you sure?");
+//           setIsOpenModal(false);
+//         }}
+//       />
+//       <button onClick={() => setIsOpenModal(true)}>
+//         {isOpenModal ? "Hide modal" : "Show modal"}
+//       </button>
 
-      <hr />
+//       <hr />
 
-      <UncontrolledOnboardingFlow
-        onFinish={(data) => {
-          console.table(data);
-          alert("Onboarding complete!");
-        }}
-      >
-        <StepOne />
-        <StepTwo />
-        <StepFour />
-      </UncontrolledOnboardingFlow>
-      <hr />
+//       <UncontrolledOnboardingFlow
+//         onFinish={(data) => {
+//           console.table(data);
+//           alert("Onboarding complete!");
+//         }}
+//       >
+//         <StepOne />
+//         <StepTwo />
+//         <StepFour />
+//       </UncontrolledOnboardingFlow>
+//       <hr />
 
-      <ControlledOnboardingFlow
-        currentIndex={currentIndex}
-        onNext={onNext}
-        onFinish={() => {
-          console.table(onboardingData);
-          alert("Onboarding complete!");
-        }}
-      >
-        <StepOne />
-        <StepTwo />
-        {onboardingData.age! >= 62 && <StepThree />}
+//       <ControlledOnboardingFlow
+//         currentIndex={currentIndex}
+//         onNext={onNext}
+//         onFinish={() => {
+//           console.table(onboardingData);
+//           alert("Onboarding complete!");
+//         }}
+//       >
+//         <StepOne />
+//         <StepTwo />
+//         {onboardingData.age! >= 62 && <StepThree />}
 
-        <StepFour />
-      </ControlledOnboardingFlow>
-    </>
-  );
-};
+//         <StepFour />
+//       </ControlledOnboardingFlow>
+//     </>
+//   );
+// };
 
 export default App;

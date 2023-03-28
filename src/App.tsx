@@ -1,6 +1,17 @@
 // import { UserInfo } from "./components/ListItems/UserInfo";
 
-import { UserInfoForm } from "./components/Forms/UserInfoForm";
+//import { UserInfoForm } from "./components/Forms/UserInfoForm";
+import {
+  BigSuccessButton,
+  DangerButton,
+} from "./components/Composition/Composition";
+import { ProductInfo } from "./components/ListItems/ProductInfo";
+import { UserInfo } from "./components/ListItems/UserInfo";
+import {
+  DangerButton2,
+  BigSuccessButton2,
+} from "./components/PartiallyAplly/partiallyAplly";
+import { RecursiveComponent } from "./components/RecursiveComponent/RecursiveComponent";
 // import { UserInfo } from "./components/ListItems/UserInfo";
 // import { printProps } from "./components/PrintProps/PrintProps";
 // import { withUser } from "./components/WithUser/withUser";
@@ -23,8 +34,55 @@ import { UserInfoForm } from "./components/Forms/UserInfoForm";
 //   return <UserInfoWithLoader />;
 // };
 
+// const App = () => {
+//   return <UserInfoForm />;
+// };
+
+const nestedObject = {
+  a: 1,
+  b: {
+    b1: 4,
+    b2: {
+      b23: "hello",
+    },
+    b3: {
+      b31: {
+        message: "HI",
+      },
+      b32: {
+        message: "HI",
+      },
+    },
+  },
+  c: {
+    c1: 2,
+    c2: 3,
+  },
+};
+
+// const App = () => {
+//   return (
+//     <>
+//       <UserInfo userId="123" />
+//       <UserInfo userId="234" />
+//       <UserInfo userId="456" />
+//       <ProductInfo productId="1" />
+//       <ProductInfo productId="2" />
+//       <ProductInfo productId="3" />
+//     </>
+//   );
+// };
 const App = () => {
-  return <UserInfoForm />;
+  return (
+    <>
+      <RecursiveComponent data={nestedObject} />
+      <DangerButton text="ohay sekai oh oh" />
+      <BigSuccessButton text="ohay sekai oh oh" />
+      <hr />
+      <DangerButton2 text="ohay sekai oh oh" />
+      <BigSuccessButton2 text="ohay sekai oh oh" />
+    </>
+  );
 };
 
 // const getServerData = async (url: string) => {

@@ -1,6 +1,14 @@
-import { ProductInfoProps } from "./types";
+import { ProductInfoProps, ProductProps } from "./types";
+import { useResource } from "../../hooks/useResource";
 
-export const ProductInfo = ({ product }: ProductInfoProps) => {
+interface ProductInfoProps2 {
+  productId: string;
+}
+
+export const ProductInfo = ({ productId }: ProductInfoProps2) => {
+  const { resource: product } = useResource<ProductProps>({
+    resourcePath: `/products/${productId}`,
+  });
   const { name, description, price, rate } = product || {};
 
   return product ? (
